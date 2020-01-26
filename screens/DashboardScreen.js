@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import FeaturedCard from '../Components/FeaturedCard';
+import Header from '../Components/Header';
 
 class DashboardScreen extends Component {
   render() {
     return (
-      <View style={styles.container} onPress={() => this.props.navigation.navigate('RecipeLibraryScreen')}>
-        <Text style={styles.header}>Welcome</Text>
-        <Button title="Sign out" onPress={() => firebase.auth().signOut()} />
-        <FeaturedCard/>
+      <View style={styles.container} >
+        <Header text="Welcome"></Header>
+        {/* <Button title="Sign out" onPress={() => firebase.auth().signOut()} /> */}
+        <FeaturedCard />
       </View>
     );
   }
 }
 export default DashboardScreen;
-i
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

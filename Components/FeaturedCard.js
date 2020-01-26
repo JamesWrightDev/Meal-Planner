@@ -1,25 +1,31 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, Image, ImageBackground, TouchableHighlight } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 class FeaturedCard extends Component {
   render() {
     return (
-        <ImageBackground
-          source={{uri: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg&fm=jpg'}}
-          style={styles.backgroundImage}
-          imageStyle={{borderRadius: 15}}>
-          <Text
-            style={styles.header}
-          >Discover Recipes</Text>
-        </ImageBackground>
+      <TouchableHighlight
+        onPress={() => this.props.navigation.navigate('RecipeLibraryScreen')}>
+      <ImageBackground
+        source={{uri: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg&fm=jpg'}}
+        style={styles.backgroundImage}
+        imageStyle={{borderRadius: 15}}>
+        <Text style={styles.header} >Discover Recipes</Text>
+      </ImageBackground>
+    </TouchableHighlight>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  image: {
+    height:100,
+    width:300
+  },
   backgroundImage: {
     width: '100%',
-    maxHeight: '25%',
+    maxHeight: '50%',
     flex: 1,
     alignItems: 'flex-start',
     justifyContent: 'center'
@@ -36,4 +42,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FeaturedCard;
+export default withNavigation(FeaturedCard);
