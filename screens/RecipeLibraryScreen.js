@@ -1,14 +1,32 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native';
 import Header from '../Components/Header';
+import RecipeCard from '../Components/RecipeCard';
 import { connect } from 'react-redux';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class RecipeLibraryScreen extends Component {
   render() {
+    const { recipes } = this.props;
+
     return (
       <View style={styles.container}>
-        <Header text="Discover Recipes"></Header>
-          <Button title="home" onPress={() => this.props.navigation.navigate('DashboardScreen')}/>
+        <ScrollView horizontal={true}>
+          {
+            recipes.recipeCollection && recipes.recipeCollection.map(item => {
+              return(
+                  <RecipeCard
+                    key={item.id}
+                    name={item.name}
+                    imageUrl={item.imageUrl}
+                    ingredients={item.ingredients}
+                    method={item.method}
+                    time={item.time}
+                  />
+              )
+            })
+          }
+        </ScrollView>
       </View>
     )
   }
@@ -23,9 +41,11 @@ export default connect(mapStateToProps)(RecipeLibraryScreen);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     paddingTop: 80,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
+    height: 130,
   },
 });

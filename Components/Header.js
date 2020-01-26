@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 38,
     fontWeight: 'bold',
-    marginBottom: 50
+    marginBottom: 50,
+    color: "#EF476F"
   },
 });
