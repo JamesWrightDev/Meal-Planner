@@ -35,7 +35,7 @@ const store = createStore(reducers, compose(
 
 sagaMiddleware.run(rootSaga);
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return(
       <Provider store={ store }>
@@ -44,6 +44,8 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default App;
 
 
 

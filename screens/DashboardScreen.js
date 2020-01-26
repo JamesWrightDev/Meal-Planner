@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import { fetchRecipes } from '../redux/actions';
 
 class DashboardScreen extends Component {
-  test() {
-    this.props.fetchRecipes();
+  componentDidMount() {
+    // this.props.fetchRecipes();
   }
 
   render() {

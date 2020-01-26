@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native';
 import Header from '../Components/Header';
+import { connect } from 'react-redux';
+
 class RecipeLibraryScreen extends Component {
   render() {
     return (
@@ -11,7 +13,12 @@ class RecipeLibraryScreen extends Component {
     )
   }
 }
-export default RecipeLibraryScreen;
+
+const mapStateToProps = (state) => {
+  const { recipes } = state
+  return { recipes }
+};
+export default connect(mapStateToProps)(RecipeLibraryScreen);
 
 const styles = StyleSheet.create({
   container: {
