@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import FeaturedCard from '../Components/FeaturedCard';
 import Header from '../Components/Header';
+import { connect } from 'react-redux';
 
 class DashboardScreen extends Component {
   render() {
@@ -14,7 +15,13 @@ class DashboardScreen extends Component {
     );
   }
 }
-export default DashboardScreen;
+
+const mapStateToProps = (state) => {
+  const { recipes } = state
+  return { recipes }
+};
+
+export default connect(mapStateToProps)(DashboardScreen);
 
 const styles = StyleSheet.create({
   container: {
