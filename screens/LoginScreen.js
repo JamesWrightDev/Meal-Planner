@@ -7,6 +7,7 @@ class LoginScreen extends Component {
   componentDidMount() {
     this.props.navigation.navigate('DashboardScreen');
   }
+
   isUserEqual = (googleUser, firebaseUser) => {
     if (firebaseUser) {
       var providerData = firebaseUser.providerData;

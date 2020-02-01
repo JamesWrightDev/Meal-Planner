@@ -14,18 +14,8 @@ export default function RecipeCard(props) {
 
 const styles = StyleSheet.create({
   container: {
-    marginRight: 20,
-    borderRadius: 15,
-    backgroundColor: "#FAD705",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.20,
-    shadowRadius: 1.41,
-
-    elevation: 2,
+    backgroundColor: "#000",
+    marginBottom: 30,
   },
   backgroundImage: {
     maxHeight: '100%',

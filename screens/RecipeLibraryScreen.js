@@ -9,20 +9,32 @@ import { StackActions } from 'react-navigation';
 class RecipeLibraryScreen extends Component {
   render() {
     const { recipes } = this.props;
+    const { recipeCollection } = recipes;
+;
 
-    handlePress = () => {
+    const handlePress = (id) => {
       this.props.navigation.dispatch(StackActions.push({
         routeName: 'RecipeInfoScreen',
+        params: {
+          recipeId: id,
+        },
       }))
     }
 
     return (
       <View>
-        <TouchableOpacity onPress={ handlePress }>
-        <RecipeCard
-          name="Spagetti"
-        />
-        </TouchableOpacity>
+        {
+          recipeCollection && recipeCollection.map(item => {
+            return(
+              <TouchableOpacity
+                key={item.id}
+                activeOpacity={0.8}
+                onPress={ () => handlePress(item.id) }>
+                <RecipeCard name={item.name}/>
+              </TouchableOpacity>
+            )
+          })
+        }
       </View>
     )
   }

@@ -2,8 +2,8 @@ import { FETCH_RECIPES_SUCCESS } from '../constants/index';
 const initalState = {
   "recipeCollection": [
     {
-      'id': "1231423424",
-      "name": "Spaghetti Bolognese",
+      'id': "1",
+      "name": "Pie and Mash",
       "imageUrl": ["https://images.pexels.com/photos/725990/pexels-photo-725990.jpeg?auto=compress&cs=tinysrgb&dpr=2&      w=500.jpeg"],
       "ingredients": [
         {
@@ -41,7 +41,7 @@ const initalState = {
       "tags": ['italian', 'spagetti']
     },
     {
-      'id': "1231423426",
+      'id': "9",
       "name": "Spaghetti Bolognese",
       "imageUrl": ["https://images.pexels.com/photos/725990/pexels-photo-725990.jpeg?auto=compress&cs=tinysrgb&dpr=2&      w=500.jpeg"],
       "ingredients": [
