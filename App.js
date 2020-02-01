@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
@@ -16,7 +17,7 @@ import LoginScreen from './screens/LoginScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import RecipeLibraryScreen from './screens/RecipeLibraryScreen';
-
+import RecipeInfoScreen from './screens/RecipeInfoScreen';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -48,11 +49,18 @@ class App extends React.Component {
 export default App;
 
 
+const HomeNavigator = createStackNavigator(
+  {
+    DashboardScreen: DashboardScreen,
+    RecipeLibraryScreen: RecipeLibraryScreen,
+    RecipeInfoScreen: RecipeInfoScreen
+  },
+);
 
 const AppSwitchNavigator = createSwitchNavigator({
   LoadingScreen: LoadingScreen,
   LoginScreen: LoginScreen,
-  DashboardScreen: DashboardScreen,
+  DashboardScreen: HomeNavigator,
   RecipeLibraryScreen: RecipeLibraryScreen
 });
 

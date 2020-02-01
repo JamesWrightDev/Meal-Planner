@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, ImageBackground, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import { StackActions } from 'react-navigation';
 
 class FeaturedCard extends Component {
   render() {
     return (
-      <TouchableHighlight
-        onPress={() => this.props.navigation.navigate('RecipeLibraryScreen')}>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.dispatch(StackActions.push({
+          routeName: 'RecipeLibraryScreen',
+        }))}>
       <ImageBackground
         source={{uri: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg&fm=jpg'}}
         style={styles.backgroundImage}
         imageStyle={{borderRadius: 15}}>
         <Text style={styles.header} >Discover Recipes</Text>
       </ImageBackground>
-    </TouchableHighlight>
+    </TouchableOpacity>
     )
   }
 }

@@ -6,30 +6,17 @@ export default function RecipeCard(props) {
   const {imageUrl, ingredients, method, name, time } = props;
 
   return (
-    <TouchableHighlight>
       <View style={styles.container}>
-        <ImageBackground
-          source={{uri: imageUrl[0]}}
-          style={styles.backgroundImage}
-          imageStyle={{ borderTopLeftRadius: 10, borderTopRightRadius: 10} }>
           <Text style={styles.header}>{name}</Text>
-        </ImageBackground>
-
-        <View style={styles.info}>
-            <Text style={styles.info}>{time}</Text>
-        </View>
       </View>
-    </TouchableHighlight>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: 160,
     marginRight: 20,
-    backgroundColor: '#06D6A0',
     borderRadius: 15,
-    height: '40%',
+    backgroundColor: "#FAD705",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

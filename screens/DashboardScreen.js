@@ -6,10 +6,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { fetchRecipes } from '../redux/actions';
 
+
 class DashboardScreen extends Component {
-  componentDidMount() {
-    // this.props.fetchRecipes();
-  }
 
   render() {
     return (
@@ -17,7 +15,6 @@ class DashboardScreen extends Component {
         <Header text="Welcome"></Header>
         {/* <Button title="Sign out" onPress={() => firebase.auth().signOut()} /> */}
         <FeaturedCard />
-        <Button title="button" onPress={() => this.test()}/>
       </View>
     );
   }
@@ -27,6 +24,7 @@ const mapStateToProps = (state) => {
   const { recipes } = state
   return { recipes }
 };
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchRecipes }, dispatch)
 }
