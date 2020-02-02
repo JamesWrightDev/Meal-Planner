@@ -56,7 +56,7 @@ const HomeNavigator = createStackNavigator(
     DashboardScreen: DashboardScreen,
     RecipeLibraryScreen: RecipeLibraryScreen,
     RecipeInfoScreen: RecipeInfoScreen
-  },
+  }
 );
 
 const AppSwitchNavigator = createSwitchNavigator({

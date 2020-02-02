@@ -8,7 +8,14 @@ import { fetchRecipes } from '../redux/actions';
 
 
 class DashboardScreen extends Component {
-
+  componentDidMount(){
+    if(!this.props.recipes) {
+      this.props.fetchRecipes();
+    }
+    else {
+      console.log(true);
+    }
+  }
   render() {
     return (
       <View style={styles.container} >
@@ -39,9 +46,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20
   },
-  header: {
-    fontSize: 38,
-    fontWeight: 'bold',
-    marginBottom: 50
+  headerStyle: {
+    backgroundColor: '#f4511e',
   },
 });

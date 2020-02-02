@@ -21,6 +21,7 @@ class RecipeInfoScreen extends Component {
       <View style={styles.container}>
         <Text>{name}</Text>
         <Text>{time}</Text>
+        <Text>{method}</Text>
       </View>
     )
   }
