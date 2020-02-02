@@ -10,7 +10,8 @@ import createSagaMiddleware from 'redux-saga'
 import * as firebase from 'firebase';
 import { firebaseConfig } from './config';
 
-import { recipeReducer } from './redux/reducers/index';
+import { recipeReducer} from './redux/reducers/index';
+import { mealPlanReducer } from './redux/reducers/mealPlanReducer';
 import { rootSaga } from './redux/store/index'
 
 import LoginScreen from './screens/LoginScreen';
@@ -27,6 +28,7 @@ const sagaMiddleware = createSagaMiddleware()
 
 const reducers =  combineReducers({
   recipes: recipeReducer,
+  mealPlan: mealPlanReducer
 });
 
 const store = createStore(reducers, compose(

@@ -1,7 +1,8 @@
 import {
   FETCH_RECIPES,
   FETCH_RECIPES_SUCCESS,
-  FETCH_RECIPES_FAIL
+  FETCH_RECIPES_FAIL,
+  ADD_RECIPE_MEAL_PLAN
   } from '../constants/index';
 
 export function fetchRecipes() {
@@ -21,5 +22,12 @@ export function fetchRecipesFail(error) {
   return {
     type: FETCH_RECIPES_FAIL,
     payload: error
+  }
+}
+
+export function addRecipeMealplan(id) {
+  return {
+    type: ADD_RECIPE_MEAL_PLAN,
+    payload: id
   }
 }

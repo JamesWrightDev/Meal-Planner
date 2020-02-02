@@ -16,7 +16,7 @@ class RecipeInfoScreen extends Component {
       return item.id == recipeId
     });
     const { name, method, ingredients, time } = recipe[0];
-    console.log(recipe, name);
+
     return (
       <View style={styles.container}>
         <Text>{name}</Text>
