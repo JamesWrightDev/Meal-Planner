@@ -12,15 +12,15 @@ class RecipeInfoScreen extends Component {
 
     const { recipes } = this.props;
 
-    const recipe = recipes.recipeCollection.filter(item => {
+    let recipe = recipes.recipeCollection.filter(item => {
       return item.id == recipeId
     });
-
-    console.log(recipe);
-
+    const { name, method, ingredients, time } = recipe[0];
+    console.log(recipe, name);
     return (
       <View style={styles.container}>
-        <Text>{recipe[0].name}</Text>
+        <Text>{name}</Text>
+        <Text>{time}</Text>
       </View>
     )
   }
@@ -34,9 +34,6 @@ export default connect(mapStateToProps)(RecipeInfoScreen);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
     paddingTop: 20,
     paddingLeft: 20,
     paddingRight: 20,
