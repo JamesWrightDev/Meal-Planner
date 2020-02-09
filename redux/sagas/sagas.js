@@ -4,17 +4,15 @@ import {
 } from '../constants/index'
 import { fetchRecipesSuccess } from '../actions/index'
 import { takeLatest, put, call } from 'redux-saga/effects'
-import * as firebase from 'firebase';
 
 const fetchReceipes = function* () {
-  const response = yield firebase.database().ref("/recipes/")
-    .once('value')
-    .then(function(snapshot){
-    return snapshot.val();
-  });
-  if(response){
-    yield put( fetchRecipesSuccess(response) );
-  }
+  const base_url = "https://mighty-retreat-69650.herokuapp.com"
+
+  const recipes = yield fetch(`${base_url}/recipes`)
+  .then(response => response.json());
+
+  yield put( fetchRecipesSuccess(recipes) );
+
 }
 
 export function* recipesWatcher() {
