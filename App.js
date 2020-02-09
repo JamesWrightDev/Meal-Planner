@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
@@ -50,6 +52,14 @@ class App extends React.Component {
 
 export default App;
 
+const TabNavigator = createBottomTabNavigator({
+  Home: createStackNavigator({
+    DashboardScreen: DashboardScreen,
+    RecipeLibraryScreen: RecipeLibraryScreen,
+    RecipeInfoScreen: RecipeInfoScreen
+  }),
+  RecipeLibraryScreen: RecipeLibraryScreen,
+});
 
 const HomeNavigator = createStackNavigator(
   {
@@ -62,9 +72,11 @@ const HomeNavigator = createStackNavigator(
 const AppSwitchNavigator = createSwitchNavigator({
   LoadingScreen: LoadingScreen,
   LoginScreen: LoginScreen,
-  DashboardScreen: HomeNavigator,
+  DashboardScreen: TabNavigator,
   RecipeLibraryScreen: RecipeLibraryScreen
 });
+
+
 
 const AppNavigator = createAppContainer(AppSwitchNavigator);
 
