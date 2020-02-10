@@ -12,16 +12,24 @@ class RecipeInfoScreen extends Component {
 
     const { recipes } = this.props;
 
-    let recipe = recipes.recipeCollection.filter(item => {
+    let recipe = recipes.filter(item => {
       return item.id == recipeId
     });
-    const { name, method, ingredients, time } = recipe[0];
+    const { name, method, methods, ingredients, time } = recipe[0];
 
+    console.log(methods);
     return (
       <View style={styles.container}>
         <Text>{name}</Text>
         <Text>{time}</Text>
-        <Text>{method}</Text>
+        {
+          methods && methods.map(item => {
+            return(
+              <Text>{item.Step_Instructions}</Text>
+            )
+          })
+        }
+
       </View>
     )
   }
