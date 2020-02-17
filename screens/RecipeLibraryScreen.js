@@ -32,12 +32,12 @@ class RecipeLibraryScreen extends Component {
             return(
               <View key={item.id}>
                 <TouchableOpacity
-
                   activeOpacity={0.8}
                   onPress={ () => viewRecipe(item.id) }>
                   <RecipeCard name={item.name}/>
                 </TouchableOpacity>
-                <Button title="add"
+                <Button
+                title="add"
                 onPress={ () => addRecipe(item.id) }
                 ></Button>
               </View>
