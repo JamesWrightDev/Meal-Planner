@@ -21,8 +21,8 @@ class RecipeLibraryScreen extends Component {
       }))
     }
 
-    const addRecipe = (id) => {
-      this.props.addRecipeMealplan(id);
+    const addRecipe = (item) => {
+      this.props.addRecipeMealplan(item);
     }
 
     return (
@@ -38,7 +38,7 @@ class RecipeLibraryScreen extends Component {
                 </TouchableOpacity>
                 <Button
                 title="add"
-                onPress={ () => addRecipe(item.id) }
+                onPress={ () => addRecipe(item) }
                 ></Button>
               </View>
             )

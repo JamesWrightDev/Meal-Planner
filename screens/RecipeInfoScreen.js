@@ -15,9 +15,9 @@ class RecipeInfoScreen extends Component {
     let recipe = recipes.filter(item => {
       return item.id == recipeId
     });
-    const { name, method, methods, ingredients, time } = recipe[0];
 
-    console.log(methods);
+    const { name, methods, ingredients, time } = recipe[0];
+
     return (
       <View style={styles.container}>
         <Text>{name}</Text>
@@ -25,8 +25,16 @@ class RecipeInfoScreen extends Component {
         {
           methods && methods.map(item => {
             return(
-              <Text>{item.Step_Instructions}</Text>
+              <Text key={item.key}>{item.Step_Instructions}</Text>
             )
+          })
+        }
+
+        {
+          ingredients && ingredients.map(item => {
+            // return(
+            //   <Text>{item.Step_Instructions}</Text>
+            // )
           })
         }
 
@@ -39,6 +47,7 @@ const mapStateToProps = (state) => {
   const { recipes } = state
   return { recipes }
 };
+
 export default connect(mapStateToProps)(RecipeInfoScreen);
 
 const styles = StyleSheet.create({

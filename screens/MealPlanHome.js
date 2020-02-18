@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import FeaturedCard from '../Components/FeaturedCard';
-import Header from '../Components/Header';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { fetchRecipes } from '../redux/actions';
@@ -9,6 +7,7 @@ import { fetchRecipes } from '../redux/actions';
 
 class MealPlanHome extends Component {
   componentDidMount(){
+
   }
 
   render() {
@@ -29,7 +28,7 @@ class MealPlanHome extends Component {
     return (
       <View style={styles.container} >
         {
-          mealPlan && mealPlan.length > 0 ?  <MealPlan/>: <NoPlans/>
+          mealPlan && mealPlan.recipes.length > 0 ?  <MealPlan/>: <NoPlans/>
         }
       </View>
     );
