@@ -23,21 +23,20 @@ class RecipeInfoScreen extends Component {
         <Text>{name}</Text>
         <Text>{time}</Text>
         {
-          methods && methods.map(item => {
+          ingredients && ingredients.map(item => {
             return(
-              <Text key={item.key}>{item.Step_Instructions}</Text>
+              <Text key={item.key}>{item.name.Ingredient_Name}</Text>
             )
           })
         }
 
         {
-          ingredients && ingredients.map(item => {
-            // return(
-            //   <Text>{item.Step_Instructions}</Text>
-            // )
+          methods && methods.map((item, i) => {
+            return(
+              <Text key={i}>{item.Step_Instructions}</Text>
+            )
           })
         }
-
       </View>
     )
   }

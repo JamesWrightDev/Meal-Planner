@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
-import { fetchRecipes } from '../redux/actions';
+import { fetchRecipes, createShoppingList } from '../redux/actions';
 
 
 class MealPlanHome extends Component {
   componentDidMount(){
 
+  }
+  handleCreateShoppingList() {
+    console.log('click', this.props);
+    this.props.createShoppingList()
   }
 
   render() {
@@ -21,7 +25,17 @@ class MealPlanHome extends Component {
 
     const MealPlan = () => {
       return(
-        <Text>You have plans</Text>
+        <View>
+          <Text>Your Meal Plan</Text>
+          {
+            mealPlan.recipes.map((item, i) => {
+              return(
+              <Text key={i}>{item}</Text>
+              )
+            })
+          }
+          <Button title="Create Shopping List" onPress={() => this.handleCreateShoppingList()}/>
+        </View>
       )
     }
 
@@ -41,7 +55,7 @@ const mapStateToProps = (state) => {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchRecipes }, dispatch)
+  return bindActionCreators({ createShoppingList }, dispatch)
 }
 
 export default connect(mapStateToProps ,mapDispatchToProps)(MealPlanHome);

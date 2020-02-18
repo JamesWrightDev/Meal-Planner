@@ -2,7 +2,8 @@ import {
   FETCH_RECIPES,
   FETCH_RECIPES_SUCCESS,
   FETCH_RECIPES_FAIL,
-  ADD_RECIPE_MEAL_PLAN
+  ADD_RECIPE_MEAL_PLAN,
+  CREATE_SHOPPING_LIST
   } from '../constants/index';
 
 export function fetchRecipes() {
@@ -29,5 +30,12 @@ export function addRecipeMealplan(id) {
   return {
     type: ADD_RECIPE_MEAL_PLAN,
     payload: id
+  }
+}
+
+export function createShoppingList(ingredients) {
+  return {
+    type: CREATE_SHOPPING_LIST,
+    payload: ingredients
   }
 }

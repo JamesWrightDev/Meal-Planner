@@ -1,7 +1,8 @@
-import { ADD_RECIPE_MEAL_PLAN } from '../constants/index';
+import { ADD_RECIPE_MEAL_PLAN, CREATE_SHOPPING_LIST } from '../constants/index';
 const initalState = {
   recipes: [],
-  ingredients: []
+  ingredients: [],
+  shoppingList: [],
 };
 
 export const mealPlanReducer = (state = initalState , action) => {
@@ -15,6 +16,22 @@ export const mealPlanReducer = (state = initalState , action) => {
         recipes: [...state.recipes, data.name],
         ingredients: [...state.ingredients, ...data.ingredients]
       }
+    case CREATE_SHOPPING_LIST:
+      let list = [];
+
+      state.ingredients.forEach(item => {
+        let duplicate = list.find(element => element.id === item.id )
+        if (duplicate) {
+            duplicate.Quantity += item.Quantity;
+        }else {
+            list.push(item);
+        }
+      })
+
+      return {
+        ...state,
+        shoppingList: list
+      };
 
     default:
       return state
