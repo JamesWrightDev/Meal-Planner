@@ -31,7 +31,7 @@ import ShoppingListScreen from './screens/ShoppingListScreen';
 //   firebase.initializeApp(firebaseConfig);
 // }
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
   recipes: recipeReducer,
@@ -45,35 +45,27 @@ const store = createStore(reducers, compose(
 
 sagaMiddleware.run(rootSaga);
 
-class App extends React.Component {
-  render() {
-    return(
-      <Provider store={ store }>
-        <AppNavigator />
-      </Provider>
-    )
-  }
-}
+const App = () => <Provider store={store}><AppNavigator /></Provider>;
 
 export default App;
 
 const TabNavigator = createBottomTabNavigator({
   Home: createStackNavigator({
-    DashboardScreen: DashboardScreen,
-    RecipeLibraryScreen: RecipeLibraryScreen,
-    RecipeInfoScreen: RecipeInfoScreen
+    DashboardScreen,
+    RecipeLibraryScreen,
+    RecipeInfoScreen
   }),
   MealPlan: createStackNavigator({
     MealPlanDashBoard: MealPlanHome,
-    ShoppingListScreen: ShoppingListScreen,
+    ShoppingListScreen,
   }),
 });
 
 const AppSwitchNavigator = createSwitchNavigator({
-  LoadingScreen: LoadingScreen,
-  LoginScreen: LoginScreen,
+  LoadingScreen,
+  LoginScreen,
   DashboardScreen: TabNavigator,
-  RecipeLibraryScreen: RecipeLibraryScreen
+  RecipeLibraryScreen
 });
 
 
