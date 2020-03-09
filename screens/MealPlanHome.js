@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { fetchRecipes, createShoppingList } from '../redux/actions';
-
+import { StackActions } from 'react-navigation';
 
 class MealPlanHome extends Component {
   componentDidMount(){
@@ -12,6 +12,13 @@ class MealPlanHome extends Component {
   handleCreateShoppingList() {
     console.log('click', this.props);
     this.props.createShoppingList()
+
+    this.props.navigation.dispatch(StackActions.push({
+      routeName: 'ShoppingListScreen',
+      params: {
+        recipeId: id,
+      },
+    }))
   }
 
   render() {

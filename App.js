@@ -22,6 +22,7 @@ import LoadingScreen from './screens/LoadingScreen';
 import RecipeLibraryScreen from './screens/RecipeLibraryScreen';
 import RecipeInfoScreen from './screens/RecipeInfoScreen';
 import MealPlanHome from './screens/MealPlanHome';
+import ShoppingListScreen from './screens/ShoppingListScreen';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -61,6 +62,7 @@ const TabNavigator = createBottomTabNavigator({
   }),
   MealPlan: createStackNavigator({
     MealPlanDashBoard: MealPlanHome,
+    ShoppingListScreen: ShoppingListScreen,
   }),
 });
 
