@@ -1,55 +1,52 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import { bindActionCreators } from 'redux'
+import {
+  View, Text, StyleSheet, Button
+} from 'react-native';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchRecipes, createShoppingList } from '../redux/actions';
 import { StackActions } from 'react-navigation';
+import { fetchRecipes, createShoppingList } from '../redux/actions';
 
 class MealPlanHome extends Component {
-  componentDidMount(){
+  componentDidMount() {
 
   }
+
   handleCreateShoppingList() {
     console.log('click', this.props);
-    this.props.createShoppingList()
+    this.props.createShoppingList();
 
     this.props.navigation.dispatch(StackActions.push({
       routeName: 'ShoppingListScreen',
       params: {
         recipeId: id,
       },
-    }))
+    }));
   }
 
   render() {
     const { mealPlan } = this.props;
 
-    const NoPlans = () => {
-      return(
-        <Text>You no have plans</Text>
-      )
-    }
+    const NoPlans = () => (
+      <Text>You no have plans</Text>
+    );
 
-    const MealPlan = () => {
-      return(
-        <View>
-          <Text>Your Meal Plan</Text>
-          {
-            mealPlan.recipes.map((item, i) => {
-              return(
+    const MealPlan = () => (
+      <View>
+        <Text>Your Meal Plan</Text>
+        {
+            mealPlan.recipes.map((item, i) => (
               <Text key={i}>{item}</Text>
-              )
-            })
+            ))
           }
-          <Button title="Create Shopping List" onPress={() => this.handleCreateShoppingList()}/>
-        </View>
-      )
-    }
+        <Button title="Create Shopping List" onPress={() => this.handleCreateShoppingList()} />
+      </View>
+    );
 
     return (
-      <View style={styles.container} >
+      <View style={styles.container}>
         {
-          mealPlan && mealPlan.recipes.length > 0 ?  <MealPlan/>: <NoPlans/>
+          mealPlan && mealPlan.recipes.length > 0 ? <MealPlan /> : <NoPlans />
         }
       </View>
     );
@@ -57,15 +54,15 @@ class MealPlanHome extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { mealPlan } = state
-  return { mealPlan }
+  const { mealPlan } = state;
+  return { mealPlan };
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createShoppingList }, dispatch)
+  return bindActionCreators({ createShoppingList }, dispatch);
 }
 
-export default connect(mapStateToProps ,mapDispatchToProps)(MealPlanHome);
+export default connect(mapStateToProps, mapDispatchToProps)(MealPlanHome);
 
 const styles = StyleSheet.create({
   container: {

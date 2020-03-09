@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import {
+  View, StyleSheet, ActivityIndicator
+} from 'react-native';
 import firebase from 'firebase';
 
 class LoadingScreen extends Component {
   componentDidMount() {
-    this.checkIfLoggedIn();
+    // this.checkIfLoggedIn();
+    this.props.navigation.navigate('DashboardScreen');
   }
 
-  checkIfLoggedIn = () => {
-    firebase.auth().onAuthStateChanged(
-      function(user) {
-        if (user) {
-          this.props.navigation.navigate('DashboardScreen');
-        } else {
-          this.props.navigation.navigate('LoginScreen');
-        }
-      }.bind(this)
-    );
-  };
+  // checkIfLoggedIn = () => {
+  //   firebase.auth().onAuthStateChanged(
+  //     (user) => {
+  //       if (user) {
+  //         this.navigation.navigate('DashboardScreen');
+  //       } else {
+  //         this.navigation.navigate('LoginScreen');
+  //       }
+  //     }
+  //   );
+  // };
 
   render() {
     return (

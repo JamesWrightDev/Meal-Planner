@@ -1,50 +1,47 @@
-import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button, BackHandler } from 'react-native';
-import Header from '../Components/Header';
-import RecipeCard from '../Components/RecipeCard';
+import React, { Component } from 'react';
+import {
+  View, Text, StyleSheet, Button, BackHandler
+} from 'react-native';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native-gesture-handler';
+import Header from '../Components/Header';
+import RecipeCard from '../Components/RecipeCard';
 
 class RecipeInfoScreen extends Component {
-
   render() {
     const recipeId = this.props.navigation.getParam('recipeId');
 
     const { recipes } = this.props;
 
-    let recipe = recipes.filter(item => {
-      return item.id == recipeId
-    });
+    const recipe = recipes.filter((item) => item.id == recipeId);
 
-    const { name, methods, ingredients, time } = recipe[0];
+    const {
+      name, methods, ingredients, time
+    } = recipe[0];
 
     return (
       <View style={styles.container}>
         <Text>{name}</Text>
         <Text>{time}</Text>
         {
-          ingredients && ingredients.map(item => {
-            return(
-              <Text key={item.key}>{item.name.Ingredient_Name}</Text>
-            )
-          })
+          ingredients && ingredients.map((item) => (
+            <Text key={item.key}>{item.name.Ingredient_Name}</Text>
+          ))
         }
 
         {
-          methods && methods.map((item, i) => {
-            return(
-              <Text key={i}>{item.Step_Instructions}</Text>
-            )
-          })
+          methods && methods.map((item, i) => (
+            <Text key={i}>{item.Step_Instructions}</Text>
+          ))
         }
       </View>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { recipes } = state
-  return { recipes }
+  const { recipes } = state;
+  return { recipes };
 };
 
 export default connect(mapStateToProps)(RecipeInfoScreen);

@@ -1,20 +1,23 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-undef */
 import React from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga'
+import {
+  createStore, combineReducers, applyMiddleware, compose
+} from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
-import * as firebase from 'firebase';
-import { firebaseConfig } from './config';
+// import * as firebase from 'firebase';
+// import { firebaseConfig } from './config';
 
-import { recipeReducer} from './redux/reducers/index';
+import { recipeReducer } from './redux/reducers/index';
 import { mealPlanReducer } from './redux/reducers/mealPlanReducer';
-import { rootSaga } from './redux/store/index'
+import { rootSaga } from './redux/store/index';
 
 import LoginScreen from './screens/LoginScreen';
 import DashboardScreen from './screens/DashboardScreen';
@@ -24,13 +27,13 @@ import RecipeInfoScreen from './screens/RecipeInfoScreen';
 import MealPlanHome from './screens/MealPlanHome';
 import ShoppingListScreen from './screens/ShoppingListScreen';
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+// if (!firebase.apps.length) {
+//   firebase.initializeApp(firebaseConfig);
+// }
 
 const sagaMiddleware = createSagaMiddleware()
 
-const reducers =  combineReducers({
+const reducers = combineReducers({
   recipes: recipeReducer,
   mealPlan: mealPlanReducer
 });
@@ -66,14 +69,6 @@ const TabNavigator = createBottomTabNavigator({
   }),
 });
 
-const HomeNavigator = createStackNavigator(
-  {
-    DashboardScreen: DashboardScreen,
-    RecipeLibraryScreen: RecipeLibraryScreen,
-    RecipeInfoScreen: RecipeInfoScreen
-  }
-);
-
 const AppSwitchNavigator = createSwitchNavigator({
   LoadingScreen: LoadingScreen,
   LoginScreen: LoginScreen,
@@ -82,14 +77,4 @@ const AppSwitchNavigator = createSwitchNavigator({
 });
 
 
-
 const AppNavigator = createAppContainer(AppSwitchNavigator);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});

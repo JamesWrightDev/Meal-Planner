@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button, BackHandler, TouchableOpacity } from 'react-native';
-import Header from '../Components/Header';
-import RecipeCard from '../Components/RecipeCard';
+import React, { Component } from 'react';
+import {
+  View, Text, StyleSheet, Button, BackHandler, TouchableOpacity
+} from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { ScrollView } from 'react-native-gesture-handler';
 import { StackActions } from 'react-navigation';
+import RecipeCard from '../Components/RecipeCard';
+import Header from '../Components/Header';
 import { addRecipeMealplan } from '../redux/actions/index';
 
 class RecipeLibraryScreen extends Component {
@@ -18,43 +20,42 @@ class RecipeLibraryScreen extends Component {
         params: {
           recipeId: id,
         },
-      }))
-    }
+      }));
+    };
 
     const addRecipe = (item) => {
       this.props.addRecipeMealplan(item);
-    }
+    };
 
     return (
       <View>
         {
-          recipes && recipes.map(item => {
-            return(
-              <View key={item.id}>
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={ () => viewRecipe(item.id) }>
-                  <RecipeCard name={item.name}/>
-                </TouchableOpacity>
-                <Button
+          recipes && recipes.map((item) => (
+            <View key={item.id}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => viewRecipe(item.id)}
+              >
+                <RecipeCard name={item.name} />
+              </TouchableOpacity>
+              <Button
                 title="add"
-                onPress={ () => addRecipe(item) }
-                ></Button>
-              </View>
-            )
-          })
+                onPress={() => addRecipe(item)}
+              />
+            </View>
+          ))
         }
       </View>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { recipes } = state
-  return { recipes }
+  const { recipes } = state;
+  return { recipes };
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addRecipeMealplan  }, dispatch)
+  return bindActionCreators({ addRecipeMealplan }, dispatch);
 }
-export default connect(mapStateToProps ,mapDispatchToProps)(RecipeLibraryScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeLibraryScreen);

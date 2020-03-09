@@ -1,20 +1,23 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, ImageBackground, TouchableHighlight } from 'react-native';
+import React from 'react';
+import {
+  View, Text, StyleSheet,
+} from 'react-native';
 
 export default function RecipeCard(props) {
-
-  const {imageUrl, ingredients, method, name, time } = props;
+  const {
+    name,
+  } = props;
 
   return (
-      <View style={styles.container}>
-          <Text style={styles.header}>{name}</Text>
-      </View>
-  )
+    <View style={styles.container}>
+      <Text style={styles.header}>{name}</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#000",
+    backgroundColor: '#000',
     marginBottom: 30,
   },
   backgroundImage: {
@@ -29,7 +32,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     padding: 22,
     textShadowColor: 'rgba(0, 0, 0, 0.35)',
-    textShadowOffset: {width: -1, height: 1},
+    textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10
   },
   info: {

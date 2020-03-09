@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import {
+  View, StyleSheet,
+} from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import FeaturedCard from '../Components/FeaturedCard';
 import Header from '../Components/Header';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux';
 import { fetchRecipes } from '../redux/actions';
 
 
 class DashboardScreen extends Component {
-  componentDidMount(){
-    if(!this.props.recipes) {
+  constructor() {
+    super();
+  }
+
+  componentDidMount() {
+    if (!this.props.recipes) {
       this.props.fetchRecipes();
-    }
-    else {
+    } else {
       console.log(true);
     }
   }
+
   render() {
     return (
-      <View style={styles.container} >
-        <Header text="Welcome"></Header>
+      <View style={styles.container}>
+        <Header text="Welcome" />
         {/* <Button title="Sign out" onPress={() => firebase.auth().signOut()} /> */}
         <FeaturedCard />
       </View>
@@ -28,15 +34,15 @@ class DashboardScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { recipes } = state
-  return { recipes }
+  const { recipes } = state;
+  return { recipes };
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchRecipes }, dispatch)
+  return bindActionCreators({ fetchRecipes }, dispatch);
 }
 
-export default connect(mapStateToProps ,mapDispatchToProps)(DashboardScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardScreen);
 
 const styles = StyleSheet.create({
   container: {

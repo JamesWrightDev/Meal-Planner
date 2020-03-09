@@ -5,17 +5,17 @@ import * as Google from 'expo-google-app-auth';
 
 class LoginScreen extends Component {
   componentDidMount() {
-    this.props.navigation.navigate('DashboardScreen');
+    // this.props.navigation.navigate('DashboardScreen');
   }
 
   isUserEqual = (googleUser, firebaseUser) => {
     if (firebaseUser) {
-      var providerData = firebaseUser.providerData;
-      for (var i = 0; i < providerData.length; i++) {
+      const { providerData } = firebaseUser;
+      for (let i = 0; i < providerData.length; i++) {
         if (
-          providerData[i].providerId ===
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-          providerData[i].uid === googleUser.getBasicProfile().getId()
+          providerData[i].providerId
+            === firebase.auth.GoogleAuthProvider.PROVIDER_ID
+          && providerData[i].uid === googleUser.getBasicProfile().getId()
         ) {
           // We don't need to reauth the Firebase connection.
           return true;
@@ -24,16 +24,17 @@ class LoginScreen extends Component {
     }
     return false;
   };
-  onSignIn = googleUser => {
+
+  onSignIn = (googleUser) => {
     console.log('Google Auth Response', googleUser);
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
     var unsubscribe = firebase.auth().onAuthStateChanged(
-      function(firebaseUser) {
+      (firebaseUser) => {
         unsubscribe();
         // Check if we are already signed-in Firebase with the correct user.
         if (!this.isUserEqual(googleUser, firebaseUser)) {
           // Build Firebase credential with the Google ID token.
-          var credential = firebase.auth.GoogleAuthProvider.credential(
+          const credential = firebase.auth.GoogleAuthProvider.credential(
             googleUser.idToken,
             googleUser.accessToken
           );
@@ -41,12 +42,12 @@ class LoginScreen extends Component {
           firebase
             .auth()
             .signInWithCredential(credential)
-            .then(function(result) {
+            .then((result) => {
               console.log('user signed in ');
               if (result.additionalUserInfo.isNewUser) {
                 firebase
                   .database()
-                  .ref('/users/' + result.user.uid)
+                  .ref(`/users/${result.user.uid}`)
                   .set({
                     gmail: result.user.email,
                     profile_picture: result.additionalUserInfo.profile.picture,
@@ -54,38 +55,39 @@ class LoginScreen extends Component {
                     last_name: result.additionalUserInfo.profile.family_name,
                     created_at: Date.now()
                   })
-                  .then(function(snapshot) {
+                  .then((snapshot) => {
                     // console.log('Snapshot', snapshot);
                   });
               } else {
                 firebase
                   .database()
-                  .ref('/users/' + result.user.uid)
+                  .ref(`/users/${result.user.uid}`)
                   .update({
                     last_logged_in: Date.now()
                   });
               }
             })
-            .catch(function(error) {
+            .catch((error) => {
               // Handle Errors here.
-              var errorCode = error.code;
-              var errorMessage = error.message;
+              const errorCode = error.code;
+              const errorMessage = error.message;
               // The email of the user's account used.
-              var email = error.email;
+              const { email } = error;
               // The firebase.auth.AuthCredential type that was used.
-              var credential = error.credential;
+              const { credential } = error;
               // ...
             });
         } else {
           console.log('User already signed-in Firebase.');
         }
-      }.bind(this)
+      }
     );
   };
+
   signInWithGoogleAsync = async () => {
     try {
       const result = await Google.logInAsync({
-        androidClientId: "610696532339-8itn0k61fent4qr0g7k9u7abrq04goac.apps.googleusercontent.com",
+        androidClientId: '610696532339-8itn0k61fent4qr0g7k9u7abrq04goac.apps.googleusercontent.com',
         // iosClientId: '', //enter ios client id
         scopes: ['profile', 'email']
       });
@@ -102,6 +104,7 @@ class LoginScreen extends Component {
       return { error: true };
     }
   };
+
   render() {
     return (
       <View style={styles.container}>
