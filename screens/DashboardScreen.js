@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
-import {
-  View, StyleSheet,
-} from 'react-native';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import FeaturedCard from '../Components/FeaturedCard';
-import Header from '../Components/Header';
-import { fetchRecipes } from '../redux/actions';
+import React, { Component } from "react";
+import { View, StyleSheet } from "react-native";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import FeaturedCard from "../Components/FeaturedCard";
+import Header from "../Components/Header";
+import { fetchRecipes } from "../redux/actions";
 
 class DashboardScreen extends Component {
   constructor(props) {
     super();
 
-    const { recipes } = props;
+    const { recipes, fetchRecipes } = props;
   }
 
   componentDidMount() {
-    if (this.recipes) {
+    if (!this.recipes) {
       this.props.fetchRecipes();
     } else {
       console.log(true);
@@ -34,7 +32,7 @@ class DashboardScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { recipes } = state;
   return { recipes };
 };
@@ -48,12 +46,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(DashboardScreen);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
     paddingTop: 80,
     paddingLeft: 20,
     paddingRight: 20
   },
   headerStyle: {
-    backgroundColor: '#f4511e',
-  },
+    backgroundColor: "#f4511e"
+  }
 });

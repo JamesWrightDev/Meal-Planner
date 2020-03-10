@@ -1,20 +1,17 @@
+import { takeLatest, put } from "redux-saga/effects";
+import { FETCH_RECIPES } from "../constants/index";
+import { fetchRecipesSuccess } from "../actions/index";
 
-import {
-  FETCH_RECIPES
-} from '../constants/index'
-import { fetchRecipesSuccess } from '../actions/index'
-import { takeLatest, put, call } from 'redux-saga/effects'
+const fetchReceipes = function*() {
+  const baseUrl = "https://mighty-retreat-69650.herokuapp.com";
 
-const fetchReceipes = function* () {
-  const base_url = "https://mighty-retreat-69650.herokuapp.com"
+  const recipes = yield fetch(`${baseUrl}/recipes`).then(response =>
+    response.json()
+  );
 
-  const recipes = yield fetch(`${base_url}/recipes`)
-  .then(response => response.json());
+  yield put(fetchRecipesSuccess(recipes));
+};
 
-  yield put( fetchRecipesSuccess(recipes) );
-
-}
-
-export function* recipesWatcher() {
+export default function* recipesWatcher() {
   yield takeLatest(FETCH_RECIPES, fetchReceipes);
 }

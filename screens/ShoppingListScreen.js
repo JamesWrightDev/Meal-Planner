@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
-import {
-  View, Text
-} from 'react-native';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { createShoppingList } from '../redux/actions';
-
+import React, { Component } from "react";
+import { View, Text } from "react-native";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { createShoppingList } from "../redux/actions";
 
 class ShoppingListScreen extends Component {
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
     return (
@@ -20,7 +16,7 @@ class ShoppingListScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { mealPlan } = state;
   return { mealPlan };
 };

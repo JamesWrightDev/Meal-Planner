@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
-  Text, StyleSheet, ImageBackground, TouchableOpacity
-} from 'react-native';
-import { withNavigation, StackActions } from 'react-navigation';
-
+  Text,
+  StyleSheet,
+  ImageBackground,
+  TouchableOpacity
+} from "react-native";
+import { withNavigation, StackActions } from "react-navigation";
 
 class FeaturedCard extends Component {
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   render() {
     const { navigation } = this.props;
@@ -16,12 +16,19 @@ class FeaturedCard extends Component {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
-        onPress={() => navigation.dispatch(StackActions.push({
-          routeName: 'RecipeLibraryScreen',
-        }))}
+        onPress={() =>
+          navigation.dispatch(
+            StackActions.push({
+              routeName: "RecipeLibraryScreen"
+            })
+          )
+        }
       >
         <ImageBackground
-          source={{ uri: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg&fm=jpg' }}
+          source={{
+            uri:
+              "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg&fm=jpg"
+          }}
           style={styles.backgroundImage}
           imageStyle={{ borderRadius: 15 }}
         >
@@ -38,19 +45,19 @@ const styles = StyleSheet.create({
     width: 300
   },
   backgroundImage: {
-    width: '100%',
-    maxHeight: '50%',
+    width: "100%",
+    maxHeight: "50%",
     flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'center'
+    alignItems: "flex-start",
+    justifyContent: "center"
   },
   header: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 36,
-    fontWeight: 'bold',
-    maxWidth: '80%',
+    fontWeight: "bold",
+    maxWidth: "80%",
     padding: 30,
-    textShadowColor: 'rgba(0, 0, 0, 0.35)',
+    textShadowColor: "rgba(0, 0, 0, 0.35)",
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10
   }

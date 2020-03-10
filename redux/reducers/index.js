@@ -1,14 +1,15 @@
-import { FETCH_RECIPES_SUCCESS } from '../constants/index';
+import { FETCH_RECIPES_SUCCESS } from "../constants/index";
+
 const initalState = null;
 
-export const recipeReducer = (state = initalState, action) => {
-
+const recipeReducer = (state = initalState, action) => {
   switch (action.type) {
     case FETCH_RECIPES_SUCCESS:
-      const data = action.payload;
-      return [...data]
+      return [...action.payload];
 
     default:
-      return state
+      return state;
   }
 };
+
+export default recipeReducer;

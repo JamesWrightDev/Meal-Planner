@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import {
-  View, StyleSheet, ActivityIndicator
-} from 'react-native';
+import React, { Component } from "react";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 // import firebase from 'firebase';
 
 class LoadingScreen extends Component {
   componentDidMount() {
     // this.checkIfLoggedIn();
-    this.props.navigation.navigate('DashboardScreen');
+    this.props.navigation.navigate("DashboardScreen");
   }
 
   // checkIfLoggedIn = () => {
@@ -35,7 +33,7 @@ export default LoadingScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
