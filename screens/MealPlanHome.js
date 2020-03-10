@@ -5,7 +5,7 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { StackActions } from 'react-navigation';
-import { fetchRecipes, createShoppingList } from '../redux/actions';
+import { createShoppingList } from '../redux/actions';
 
 class MealPlanHome extends Component {
   componentDidMount() {

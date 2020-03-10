@@ -8,14 +8,15 @@ import FeaturedCard from '../Components/FeaturedCard';
 import Header from '../Components/Header';
 import { fetchRecipes } from '../redux/actions';
 
-
 class DashboardScreen extends Component {
-  constructor() {
+  constructor(props) {
     super();
+
+    const { recipes } = props;
   }
 
   componentDidMount() {
-    if (!this.props.recipes) {
+    if (this.recipes) {
       this.props.fetchRecipes();
     } else {
       console.log(true);

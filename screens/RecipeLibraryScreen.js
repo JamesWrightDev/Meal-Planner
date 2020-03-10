@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StyleSheet, Button, BackHandler, TouchableOpacity
+  View, Button, TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ScrollView } from 'react-native-gesture-handler';
 import { StackActions } from 'react-navigation';
 import RecipeCard from '../Components/RecipeCard';
-import Header from '../Components/Header';
 import { addRecipeMealplan } from '../redux/actions/index';
 
 class RecipeLibraryScreen extends Component {
+  componentDidMount() {
+
+  }
+
   render() {
     const { recipes } = this.props;
 
