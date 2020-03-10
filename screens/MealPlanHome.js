@@ -14,24 +14,22 @@ class MealPlanHome extends Component {
 
     this.props.navigation.dispatch(
       StackActions.push({
-        routeName: "ShoppingListScreen",
-        params: {
-          recipeId: id
-        }
+        routeName: "ShoppingListScreen"
       })
     );
   }
 
   render() {
     const { mealPlan } = this.props;
+    mealPlan.recipes.map(item => console.log(item));
 
     const NoPlans = () => <Text>You no have plans</Text>;
 
     const MealPlan = () => (
       <View>
         <Text>Your Meal Plan</Text>
-        {mealPlan.recipes.map((item, i) => (
-          <Text key={i}>{item}</Text>
+        {mealPlan.recipes.map(item => (
+          <Text key={item.id}>{item.name}</Text>
         ))}
         <Button
           title="Create Shopping List"

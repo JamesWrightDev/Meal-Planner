@@ -39,14 +39,6 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-const App = () => (
-  <Provider store={store}>
-    <AppNavigator />
-  </Provider>
-);
-
-export default App;
-
 const TabNavigator = createBottomTabNavigator({
   Home: createStackNavigator({
     DashboardScreen,
@@ -67,3 +59,11 @@ const AppSwitchNavigator = createSwitchNavigator({
 });
 
 const AppNavigator = createAppContainer(AppSwitchNavigator);
+
+const App = () => (
+  <Provider store={store}>
+    <AppNavigator />
+  </Provider>
+);
+
+export default App;

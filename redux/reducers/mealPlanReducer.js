@@ -6,21 +6,20 @@ const initalState = {
   shoppingList: []
 };
 
+const list = [];
+
 const mealPlanReducer = (state = initalState, action) => {
   switch (action.type) {
     case ADD_RECIPE_MEAL_PLAN:
-      const data = action.payload;
-
       return {
         ...state,
-        recipes: [...state.recipes, data.name],
-        ingredients: [...state.ingredients, ...data.ingredients]
+        recipes: [...state.recipes, {name: action.payload.name, id: action.payload.id}],
+        ingredients: [...state.ingredients, ...action.payload.ingredients]
       };
     case CREATE_SHOPPING_LIST:
-      let list = [];
 
       state.ingredients.forEach(item => {
-        let duplicate = list.find(element => element.id === item.id);
+        const duplicate = list.find(element => element.id === item.id);
         if (duplicate) {
           duplicate.Quantity += item.Quantity;
         } else {

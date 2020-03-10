@@ -21,8 +21,7 @@ class FeaturedCard extends Component {
             StackActions.push({
               routeName: "RecipeLibraryScreen"
             })
-          )
-        }
+          )}
       >
         <ImageBackground
           source={{

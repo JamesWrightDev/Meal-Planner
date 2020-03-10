@@ -26,8 +26,8 @@ class RecipeInfoScreen extends Component {
           ))}
 
         {methods &&
-          methods.map((item, i) => (
-            <Text key={i}>{item.Step_Instructions}</Text>
+          methods.map((item) => (
+            <Text key={`method_${item.key}`}>{item.Step_Instructions}</Text>
           ))}
       </View>
     );
