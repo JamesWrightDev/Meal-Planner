@@ -3,7 +3,7 @@ import { FETCH_RECIPES } from "../constants/index";
 import { fetchRecipesSuccess } from "../actions/index";
 
 const fetchReceipes = function*() {
-  const baseUrl = "https://mighty-retreat-69650.herokuapp.com";
+  const baseUrl = "http://192.168.0.102:1337";
 
   const recipes = yield fetch(`${baseUrl}/recipes`).then(response =>
     response.json()

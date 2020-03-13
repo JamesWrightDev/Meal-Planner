@@ -3,7 +3,7 @@ import {
   Text,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import { withNavigation, StackActions } from "react-navigation";
 
