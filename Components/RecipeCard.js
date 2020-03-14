@@ -26,7 +26,6 @@ const RecipeCardContainer = styled.View`
   height: 250px;
   margin: ${props => props.theme.spacing.dog} 0;
   padding: 0 12px;
-  position: relative;
 `;
 
 const RecipeImage = styled.Image`
@@ -38,7 +37,7 @@ const RecipeImage = styled.Image`
 const RecipeHeader = styled.Text`
   font-size: 24px;
   font-weight: bold;
-  margin: 0 8px;
+  margin: ${props => props.theme.spacing.cat} 0;
   font-family: "source-sans-pro-black";
   font-weight: 800;
   text-align: center;
