@@ -66,7 +66,6 @@ const AppSwitchNavigator = createSwitchNavigator({
 });
 
 const AppNavigator = createAppContainer(AppSwitchNavigator);
-console.log(theme);
 
 class App extends Component {
   componentDidMount() {
@@ -75,8 +74,6 @@ class App extends Component {
       "source-sans-pro-regular": require("./assets/fonts/SourceSansPro-Regular.otf"),
       "source-sans-pro-light": require("./assets/fonts/SourceSansPro-Light.otf")
     });
-
-    // console.log('123');
   }
 
   render() {
