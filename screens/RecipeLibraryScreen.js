@@ -8,9 +8,6 @@ import { StackActions } from "react-navigation";
 import RecipeCard from "../Components/RecipeCard";
 import { addRecipeMealplan } from "../redux/actions/index";
 
-
-
-
 class RecipeLibraryScreen extends Component {
   componentDidMount() {}
 
@@ -39,13 +36,15 @@ class RecipeLibraryScreen extends Component {
           {recipes &&
             recipes.map(item => (
               <View key={item.id}>
-                <TouchableOpacity
+                <StyledButton onPress={() => addRecipe(item)}>
+                  <ButtonIcon source={require("../assets/icons/plus.png")} />
+                </StyledButton>
+                <RecipeItem
                   activeOpacity={0.8}
                   onPress={() => viewRecipe(item.id)}
                 >
                   <RecipeCard name={item.name} />
-                </TouchableOpacity>
-                {/* <Button title="add" onPress={() => addRecipe(item)} /> */}
+                </RecipeItem>
               </View>
             ))}
         </RecipeRow>
@@ -54,9 +53,19 @@ class RecipeLibraryScreen extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  const { recipes } = state;
+  return { recipes };
+};
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ addRecipeMealplan }, dispatch);
+}
+
 const RecipeLibraryContainer = styled.ScrollView`
   height: 100%;
 `;
+
 const RecipeRow = styled.ScrollView`
   display: flex;
   flex-direction: row;
@@ -68,16 +77,26 @@ const RecipeRowTitle = styled.Text`
   font-size: 32px;
   padding: 12px;
   margin-top: 24px;
-`
+`;
 
-const mapStateToProps = state => {
-  const { recipes } = state;
-  return { recipes };
-};
+const StyledButton = styled.TouchableOpacity`
+  position: relative;
+  top: 20px;
+  left: 50%;
+  align-self: flex-start;
+  border-radius: 20px;
+  background-color: white;
+  padding: 20px;
+`;
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addRecipeMealplan }, dispatch);
-}
+const ButtonIcon = styled.Image`
+  width: 16px;
+  height: ${props => props.theme.spacing.hamster};
+`;
+
+const RecipeItem = styled.TouchableOpacity`
+`;
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

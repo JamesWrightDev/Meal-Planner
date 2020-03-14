@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { connect } from "react-redux";
 import styled from "styled-components/native";
 
@@ -55,21 +55,21 @@ class RecipeInfoScreen extends Component {
     const tabContents = [Ingredients, Methods];
 
     return (
-      <RecipeInfoContainer style={styles.container}>
+      <RecipeInfoContainer>
         <RecipeImage
           source={{
             uri:
               "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg&fm=jpg"
           }}
         />
-        <RecipeTitle>{name}</RecipeTitle>
+        <RecipeWrapper>
+          <RecipeTitle>{name}</RecipeTitle>
 
-        <RecipeMeta>
-          <TextChip primary>{`${CookingTime} hours`}</TextChip>
-          <TextChip secondary>{`${Calories} Calories`}</TextChip>
-        </RecipeMeta>
+          <RecipeMeta>
+            <TextChip primary>{`${CookingTime} hours`}</TextChip>
+            <TextChip secondary>{`${Calories} Calories`}</TextChip>
+          </RecipeMeta>
 
-        <View style={{ margin: 10 }}>
           <TabControls>
             {tabOptions.map((item, i) => (
               <TabButton
@@ -81,21 +81,34 @@ class RecipeInfoScreen extends Component {
               </TabButton>
             ))}
           </TabControls>
-        </View>
-        {tabContents.map((item, i) => {
-          return (
-            i === activeTab && <TabContainer key={item}>{item()}</TabContainer>
-          );
-        })}
+          {tabContents.map((item, i) => {
+            return (
+              i === activeTab && (
+                <TabContainer key={item}>{item()}</TabContainer>
+              )
+            );
+          })}
+        </RecipeWrapper>
       </RecipeInfoContainer>
     );
   }
 }
-const RecipeImage = styled.Image`
-  height: 200px;
-`;
+
 const RecipeInfoContainer = styled.View`
   height: 100%;
+`;
+
+const RecipeWrapper = styled.View`
+  margin: -100px ${props => props.theme.spacing.mouse};
+  background-color: white;
+  padding: ${props => props.theme.spacing.mouse};
+  border-radius: 12px;
+  height : 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.52);
+`
+
+const RecipeImage = styled.Image`
+  height: 200px;
 `;
 
 const RecipeTitle = styled.Text`
@@ -162,12 +175,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(RecipeInfoScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20,
-    height: 130
-  }
-});
