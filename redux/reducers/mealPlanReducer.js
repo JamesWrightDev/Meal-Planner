@@ -32,8 +32,6 @@ const updateMealplan = (state, action, add) => {
     }
 
     let { quantity } = item;
-
-
     if(add){
       quantity += 1;
     } else {
