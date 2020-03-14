@@ -3,6 +3,7 @@ import {
   FETCH_RECIPES_SUCCESS,
   FETCH_RECIPES_FAIL,
   ADD_RECIPE_MEAL_PLAN,
+  REMOVE_RECIPE_MEAL_PLAN,
   CREATE_SHOPPING_LIST
 } from "../constants/index";
 
@@ -29,6 +30,13 @@ export function fetchRecipesFail(error) {
 export function addRecipeMealplan(id) {
   return {
     type: ADD_RECIPE_MEAL_PLAN,
+    payload: id
+  };
+}
+
+export function removeRecipeMealplan(id) {
+  return {
+    type: REMOVE_RECIPE_MEAL_PLAN,
     payload: id
   };
 }

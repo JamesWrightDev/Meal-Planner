@@ -1,4 +1,8 @@
-import { ADD_RECIPE_MEAL_PLAN, CREATE_SHOPPING_LIST } from "../constants/index";
+import {
+  ADD_RECIPE_MEAL_PLAN,
+  REMOVE_RECIPE_MEAL_PLAN,
+  CREATE_SHOPPING_LIST,
+ } from "../constants/index";
 
 const initalState = {
   recipes: [
@@ -9,13 +13,17 @@ const initalState = {
 
 const list = [];
 
-const updateMealplan = (state, action) => {
-  const itemExisits = state.recipes.filter(
+const updateMealplan = (state, action, add) => {
+  const itemExists = state.recipes.filter(
     item => item.id === action.payload.id
   );
 
-  if (itemExisits.length === 0) {
-    return [...state.recipes, { id: action.payload.id, quantity: 1 }];
+  if (itemExists.length === 0) {
+    return [...state.recipes, { id: action.payload.id, quantity: 1, name: action.payload.name }];
+  }
+
+  if(itemExists[0].quantity < 2 && !add) {
+    return state.recipes.filter(item => item.id !== action.payload.id);
   }
 
   return state.recipes.map(item => {
@@ -24,10 +32,17 @@ const updateMealplan = (state, action) => {
     }
 
     let { quantity } = item;
-    quantity += 1;
+
+
+    if(add){
+      quantity += 1;
+    } else {
+      quantity -= 1;
+    }
 
     return {
       id: item.id,
+      name: item.name,
       quantity
     };
   });
@@ -38,7 +53,13 @@ const mealPlanReducer = (state = initalState, action) => {
     case ADD_RECIPE_MEAL_PLAN:
       return {
         ...state,
-        recipes: updateMealplan(state, action)
+        recipes: updateMealplan(state, action, true)
+      };
+
+    case REMOVE_RECIPE_MEAL_PLAN:
+      return {
+        ...state,
+        recipes: updateMealplan(state, action, false)
       };
 
     case CREATE_SHOPPING_LIST:
