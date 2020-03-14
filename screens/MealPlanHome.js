@@ -1,12 +1,26 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import styled from "styled-components/native";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { StackActions } from "react-navigation";
-import { createShoppingList } from "../redux/actions";
+import {
+  createShoppingList,
+  addRecipeMealplan,
+  removeRecipeMealplan
+} from "../redux/actions";
 
 class MealPlanHome extends Component {
   componentDidMount() {}
+
+  handleIncrement(recipe) {
+    this.props.addRecipeMealplan(recipe);
+  }
+
+  handleDecrement(recipe) {
+    this.props.removeRecipeMealplan(recipe);
+  }
 
   handleCreateShoppingList() {
     console.log("click", this.props);
@@ -21,27 +35,37 @@ class MealPlanHome extends Component {
 
   render() {
     const { mealPlan } = this.props;
-    mealPlan.recipes.map(item => console.log(item));
 
     const NoPlans = () => <Text>You no have plans</Text>;
 
     const MealPlan = () => (
       <View>
-        <Text>Your Meal Plan</Text>
+        <MealPlanHeader>Your Mealplan</MealPlanHeader>
         {mealPlan.recipes.map(item => (
-          <Text key={item.id}>{item.name}</Text>
+          <MealPlanItem key={item.id}>
+            <MealPlanItemName>{item.name}</MealPlanItemName>
+            <MealPlanControls>
+              <MealPlanButton onPress={() => this.handleIncrement(item)}>
+                <ButtonIcon source={require("../assets/icons/plus.png")} />
+              </MealPlanButton>
+              <MealPlanItemQuantity>{`${item.quantity}`}</MealPlanItemQuantity>
+              <MealPlanButton onPress={() => this.handleDecrement(item)}>
+                <ButtonIcon source={require("../assets/icons/minus.png")} />
+              </MealPlanButton>
+            </MealPlanControls>
+          </MealPlanItem>
         ))}
-        <Button
-          title="Create Shopping List"
-          onPress={() => this.handleCreateShoppingList()}
-        />
       </View>
     );
 
     return (
-      <View style={styles.container}>
+      <MealPlanContainer>
         {mealPlan && mealPlan.recipes.length > 0 ? <MealPlan /> : <NoPlans />}
-      </View>
+        <Button
+          title="Create Shopping List"
+          onPress={() => this.handleCreateShoppingList()}
+        />
+      </MealPlanContainer>
     );
   }
 }
@@ -52,20 +76,66 @@ const mapStateToProps = state => {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createShoppingList }, dispatch);
+  return bindActionCreators(
+    {
+      createShoppingList,
+      addRecipeMealplan,
+      removeRecipeMealplan
+    },
+    dispatch
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MealPlanHome);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "flex-start",
-    paddingTop: 80,
-    paddingLeft: 20,
-    paddingRight: 20
-  },
-  headerStyle: {
-    backgroundColor: "#f4511e"
-  }
-});
+const MealPlanContainer = styled.ScrollView`
+  height: 100%;
+  margin: 12px;
+`;
+
+const MealPlanHeader = styled.Text`
+  font-family: "source-sans-pro-black";
+  font-size: 32px;
+`
+
+const MealPlanItem = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 75px;
+  width: 100%;
+  padding: 18px 0;
+  margin: 12px 0;
+`;
+
+const MealPlanItemName = styled.Text`
+  font-family: "source-sans-pro-regular";
+  font-size: 22px;
+`;
+
+const MealPlanItemQuantity = styled.Text`
+  font-family: "source-sans-pro-regular";
+  font-size: 28px;
+`;
+
+const MealPlanControls = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+`;
+
+const MealPlanButton = styled.TouchableOpacity`
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px black;
+  border-radius: 25px;
+`;
+
+const ButtonIcon = styled.Image`
+  width: ${props => props.theme.spacing.hamster};
+  height: ${props => props.theme.spacing.hamster};
+`
