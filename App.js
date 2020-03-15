@@ -1,10 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
-import React from "react";
+import React, { Component } from "react";
+import * as Font from "expo-font";
 
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import { createBottomTabNavigator } from "react-navigation-tabs";
+import { ThemeProvider } from "styled-components";
 
 import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
@@ -14,13 +13,9 @@ import recipeReducer from "./redux/reducers/index";
 import mealPlanReducer from "./redux/reducers/mealPlanReducer";
 import rootSaga from "./redux/store/index";
 
-import LoginScreen from "./screens/LoginScreen";
-import DashboardScreen from "./screens/DashboardScreen";
-import LoadingScreen from "./screens/LoadingScreen";
-import RecipeLibraryScreen from "./screens/RecipeLibraryScreen";
-import RecipeInfoScreen from "./screens/RecipeInfoScreen";
-import MealPlanHome from "./screens/MealPlanHome";
-import ShoppingListScreen from "./screens/ShoppingListScreen";
+import AppNavigator from './routing/index';
+
+import theme from "./styles/theme";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -39,31 +34,24 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-const TabNavigator = createBottomTabNavigator({
-  Home: createStackNavigator({
-    DashboardScreen,
-    RecipeLibraryScreen,
-    RecipeInfoScreen
-  }),
-  MealPlan: createStackNavigator({
-    MealPlanDashBoard: MealPlanHome,
-    ShoppingListScreen
-  })
-});
+class App extends Component {
+  componentDidMount() {
+    Font.loadAsync({
+      "source-sans-pro-black": require("./assets/fonts/SourceSansPro-Black.otf"),
+      "source-sans-pro-regular": require("./assets/fonts/SourceSansPro-Regular.otf"),
+      "source-sans-pro-light": require("./assets/fonts/SourceSansPro-Light.otf")
+    });
+  }
 
-const AppSwitchNavigator = createSwitchNavigator({
-  LoadingScreen,
-  LoginScreen,
-  DashboardScreen: TabNavigator,
-  RecipeLibraryScreen
-});
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <AppNavigator />
+        </Provider>
+      </ThemeProvider>
+    );
+  }
+}
 
-const AppNavigator = createAppContainer(AppSwitchNavigator);
-
-const App = () => (
-  <Provider store={store}>
-    <AppNavigator />
-  </Provider>
-);
-
-export default App;
+export default App

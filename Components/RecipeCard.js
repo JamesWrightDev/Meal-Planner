@@ -1,46 +1,53 @@
-import React from 'react';
+import React from "react";
 import {
-  View, Text, StyleSheet,
-} from 'react-native';
+  StyleSheet,
+} from "react-native";
+import styled from "styled-components/native";
 
 export default function RecipeCard(props) {
-  const {
-    name,
-  } = props;
+  const { name, imageUrl } = props;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>{name}</Text>
-    </View>
+    <RecipeCardContainer style={styles.container}>
+      <RecipeImage
+        style={styles.image}
+        source={{uri: `http://192.168.0.102:1337${imageUrl}`}}
+      />
+      <RecipeHeader>{name}</RecipeHeader>
+    </RecipeCardContainer>
   );
 }
 
+const RecipeCardContainer = styled.View`
+  width: 200px;
+  height: 250px;
+  margin: ${props => props.theme.spacing.dog} 0;
+  padding: 0 12px;
+  position: relative;
+  z-index: -1;
+`;
+
+const RecipeImage = styled.Image`
+  width: 100%;
+  height: 150px;
+  border-radius: 12px;
+`;
+
+const RecipeHeader = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  margin: ${props => props.theme.spacing.cat} 0;
+  font-family: "source-sans-pro-black";
+  font-weight: 800;
+  text-align: center;
+`;
+
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#000',
-    marginBottom: 30,
+  button: {
+    marginLeft: 50,
+    marginRight: 50
   },
-  backgroundImage: {
-    maxHeight: '100%',
-    flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'center'
-  },
-  header: {
-    color: '#fff',
-    fontSize: 22,
-    fontWeight: 'bold',
-    padding: 22,
-    textShadowColor: 'rgba(0, 0, 0, 0.35)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
-  },
-  info: {
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingLeft: 15,
-    fontSize: 22,
-    color: '#fff',
-    fontWeight: 'bold'
+  buttonText: {
+    fontSize: 22
   }
 });
