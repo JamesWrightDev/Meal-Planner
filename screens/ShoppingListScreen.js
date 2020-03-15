@@ -31,8 +31,7 @@ class ShoppingListScreen extends Component {
 }
 const ShoppingListContainer = styled.View`
   height: 100%;
-  margin: 0 24px;
-
+margin: 0 24px;
 `
 
 const ShoppingListItem = styled.View`
