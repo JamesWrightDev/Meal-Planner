@@ -1,13 +1,12 @@
 import {
   ADD_RECIPE_MEAL_PLAN,
   REMOVE_RECIPE_MEAL_PLAN,
-  CREATE_SHOPPING_LIST,
+  SAVE_SHOPPING_LIST,
  } from "../constants/index";
 
 const initalState = {
   recipes: [
   ],
-  ingredients: [],
   shoppingList: []
 };
 
@@ -60,19 +59,10 @@ const mealPlanReducer = (state = initalState, action) => {
         recipes: updateMealplan(state, action, false)
       };
 
-    case CREATE_SHOPPING_LIST:
-      state.ingredients.forEach(item => {
-        const duplicate = list.find(element => element.id === item.id);
-        if (duplicate) {
-          duplicate.Quantity += item.Quantity;
-        } else {
-          list.push(item);
-        }
-      });
-
+    case SAVE_SHOPPING_LIST:
       return {
         ...state,
-        shoppingList: list
+        shoppingList: action.payload,
       };
 
     default:

@@ -4,7 +4,8 @@ import {
   FETCH_RECIPES_FAIL,
   ADD_RECIPE_MEAL_PLAN,
   REMOVE_RECIPE_MEAL_PLAN,
-  CREATE_SHOPPING_LIST
+  CREATE_SHOPPING_LIST,
+  SAVE_SHOPPING_LIST
 } from "../constants/index";
 
 export function fetchRecipes() {
@@ -41,9 +42,16 @@ export function removeRecipeMealplan(id) {
   };
 }
 
-export function createShoppingList(ingredients) {
+export function createShoppingList(mealPlan) {
   return {
     type: CREATE_SHOPPING_LIST,
-    payload: ingredients
+    payload: mealPlan
+  };
+}
+
+export function saveShoppingList(shoppingList) {
+  return {
+    type: SAVE_SHOPPING_LIST,
+    payload: shoppingList
   };
 }

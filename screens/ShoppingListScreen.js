@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { View, Text, ViewBase } from "react-native";
+import styled from "styled-components/native";
+
+import { Text } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { createShoppingList } from "../redux/actions";
@@ -8,26 +10,42 @@ class ShoppingListScreen extends Component {
   componentDidMount() {}
 
   render() {
-    const { mealPlan } = this.props;
-
+    const { shoppingList } = this.props.mealPlan;
     return (
-      <View>
+      <ShoppingListContainer>
         <Text>ShoppingList</Text>
         {
-          mealPlan.shoppingList.map(item => {
+          shoppingList.map(item => {
+            console.log(item);
             return(
-              <View key={item.id}>
-                <Text>{item.name.Ingredient_Name}</Text>
-                <Text>{item.Quantity}</Text>
-              </View>
+              <ShoppingListItem key={item.id}>
+                <Text>{item.name}</Text>
+                <ShoppingListItemQuantity>{`${item.quantity} ${item.metric}`}</ShoppingListItemQuantity>
+              </ShoppingListItem>
             )
           })
         }
-      </View>
+      </ShoppingListContainer>
     );
   }
 }
+const ShoppingListContainer = styled.View`
+  height: 100%;
+  margin: 0 24px;
 
+`
+
+const ShoppingListItem = styled.View`
+  padding: 12px 0;
+  border-bottom-color: gray;
+  border-bottom-width: 1px;
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+const ShoppingListItemQuantity = styled.Text`
+  color: gray;
+`
 const mapStateToProps = state => {
   const { mealPlan } = state;
   return { mealPlan };

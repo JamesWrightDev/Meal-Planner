@@ -23,7 +23,6 @@ class MealPlanHome extends Component {
   }
 
   handleCreateShoppingList() {
-    console.log("click", this.props);
     this.props.createShoppingList();
 
     this.props.navigation.dispatch(
@@ -45,12 +44,12 @@ class MealPlanHome extends Component {
           <MealPlanItem key={item.id}>
             <MealPlanItemName>{item.name}</MealPlanItemName>
             <MealPlanControls>
-              <MealPlanButton onPress={() => this.handleIncrement(item)}>
-                <ButtonIcon source={require("../assets/icons/plus.png")} />
-              </MealPlanButton>
-              <MealPlanItemQuantity>{`${item.quantity}`}</MealPlanItemQuantity>
               <MealPlanButton onPress={() => this.handleDecrement(item)}>
                 <ButtonIcon source={require("../assets/icons/minus.png")} />
+              </MealPlanButton>
+              <MealPlanItemQuantity>{`${item.quantity}`}</MealPlanItemQuantity>
+              <MealPlanButton onPress={() => this.handleIncrement(item)}>
+                <ButtonIcon source={require("../assets/icons/plus.png")} />
               </MealPlanButton>
             </MealPlanControls>
           </MealPlanItem>
@@ -96,7 +95,7 @@ const MealPlanContainer = styled.ScrollView`
 const MealPlanHeader = styled.Text`
   font-family: "source-sans-pro-black";
   font-size: 32px;
-`
+`;
 
 const MealPlanItem = styled.View`
   display: flex;
@@ -138,4 +137,4 @@ const MealPlanButton = styled.TouchableOpacity`
 const ButtonIcon = styled.Image`
   width: ${props => props.theme.spacing.hamster};
   height: ${props => props.theme.spacing.hamster};
-`
+`;

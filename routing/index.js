@@ -1,5 +1,6 @@
 import React from "react";
 import { Image } from "react-native";
+import BottomTabIcon from '../Components/BottomTabIcon';
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
@@ -68,11 +69,12 @@ const TabNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: false,
         tabBarIcon: () => (
-          <Image
-            source={require("../assets/icons/eat.png")}
-            resizeMode="contain"
-            style={{ width: 30, height: 30 }}
-          />
+          <BottomTabIcon />
+          // <Image
+          //   source={require("../assets/icons/eat.png")}
+          //   resizeMode="contain"
+          //   style={{ width: 30, height: 30 }}
+          // />
         )
       }
     }
