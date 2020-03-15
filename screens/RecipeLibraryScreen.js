@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StackActions } from "react-navigation";
 import RecipeCard from "../Components/RecipeCard";
-import { addRecipeMealplan } from "../redux/actions/index";
+import { addRecipeMealplan } from "../redux/mealplan/actions";
 
 class RecipeLibraryScreen extends Component {
   componentDidMount() {}

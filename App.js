@@ -9,8 +9,8 @@ import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 
-import recipeReducer from "./redux/reducers/index";
-import mealPlanReducer from "./redux/reducers/mealPlanReducer";
+import recipeReducer from "./redux/recipes/reducer";
+import mealPlanReducer from "./redux/mealplan/reducer";
 import rootSaga from "./redux/store/index";
 
 import AppNavigator from './routing/index';

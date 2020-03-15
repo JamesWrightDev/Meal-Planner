@@ -1,6 +1,6 @@
 import { takeLatest, put, select } from "redux-saga/effects";
 import { CREATE_SHOPPING_LIST } from "../constants/index";
-import { saveShoppingList } from "../actions/index";
+import { saveShoppingList } from "../mealplan/actions";
 
 const getRecipes = state => state.recipes;
 const getMealPlan = state => state.mealPlan;

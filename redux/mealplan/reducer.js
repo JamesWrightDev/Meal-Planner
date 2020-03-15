@@ -5,12 +5,9 @@ import {
  } from "../constants/index";
 
 const initalState = {
-  recipes: [
-  ],
+  recipes: [],
   shoppingList: []
 };
-
-const list = [];
 
 const updateMealplan = (state, action, add) => {
   const itemExists = state.recipes.filter(

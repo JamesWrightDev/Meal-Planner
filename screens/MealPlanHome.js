@@ -9,7 +9,7 @@ import {
   createShoppingList,
   addRecipeMealplan,
   removeRecipeMealplan
-} from "../redux/actions";
+} from "../redux/mealplan/actions";
 
 class MealPlanHome extends Component {
   componentDidMount() {}
