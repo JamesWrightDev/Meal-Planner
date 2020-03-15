@@ -6,12 +6,10 @@ import * as Font from "expo-font";
 import { ThemeProvider } from "styled-components";
 
 import { Provider } from "react-redux";
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 
-import recipeReducer from "./redux/recipes/reducer";
-import mealPlanReducer from "./redux/mealplan/reducer";
-import rootSaga from "./redux/store/index";
+import {rootSaga, rootReducer} from './redux/store/index';
 
 import AppNavigator from './routing/index';
 
@@ -19,13 +17,8 @@ import theme from "./styles/theme";
 
 const sagaMiddleware = createSagaMiddleware();
 
-const reducers = combineReducers({
-  recipes: recipeReducer,
-  mealPlan: mealPlanReducer
-});
-
 const store = createStore(
-  reducers,
+  rootReducer,
   compose(
     applyMiddleware(sagaMiddleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
