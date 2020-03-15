@@ -85,13 +85,12 @@ const StyledButton = styled.TouchableOpacity`
   left: 50%;
   align-self: flex-start;
   border-radius: 50px;
-  background-color: white;
+  background-color: #02C39A;
   padding: 15px;
   top: 40px;
   left: 65%;
   z-index: 999;
   opacity: 0.9;
-  border: solid 1px black;
 `;
 
 const ButtonIcon = styled.Image`

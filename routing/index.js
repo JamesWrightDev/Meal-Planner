@@ -17,9 +17,10 @@ import {
 const defaultStackOptions = {
   title: false,
   headerStyle: {
-    backgroundColor: '#f4511e',
+    backgroundColor: 'transparent',
+    elevation: 0,
   },
-  headerTintColor: 'white',
+  headerTintColor: '#02C39A',
 };
 
 const HomeStack = createStackNavigator(
@@ -40,7 +41,10 @@ const HomeStack = createStackNavigator(
 )
 
 const MealplanStack = createStackNavigator({
-  MealPlanDashBoard: MealPlanHome,
+  MealPlanDashBoard: {
+    screen: MealPlanHome,
+    navigationOptions: defaultStackOptions,
+  },
   ShoppingListScreen
 })
 

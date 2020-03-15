@@ -99,10 +99,10 @@ const RecipeInfoContainer = styled.View`
 `;
 
 const RecipeWrapper = styled.View`
-  margin: -100px ${props => props.theme.spacing.mouse};
+  margin: -25px 0;
+  padding: ${props => props.theme.spacing.cat};
   background-color: white;
-  padding: ${props => props.theme.spacing.mouse};
-  border-radius: 12px;
+  border-radius: 28px;
   height : 100%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.52);
 `
@@ -149,11 +149,11 @@ const TabButton = styled.TouchableOpacity`
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   margin: 0 12px;
-  background-color: ${props => (props.active ? "red" : "transparent")};
+  background-color: ${props => (props.active ? "#02C39A" : "transparent")};
 `;
 
 const TabText = styled.Text`
-  color: ${props => (props.active ? "white" : "red")};
+  color: ${props => (props.active ? "white" : "#02C39A")};
 `;
 const RecipeIngredient = styled.Text`
   font-family: "source-sans-pro-regular";
