@@ -46,7 +46,10 @@ const MealplanStack = createStackNavigator({
     screen: MealPlanHome,
     navigationOptions: defaultStackOptions,
   },
-  ShoppingListScreen
+  ShoppingListScreen: {
+    screen: ShoppingListScreen,
+    navigationOptions: defaultStackOptions,
+  }
 })
 
 const TabNavigator = createBottomTabNavigator(
@@ -70,11 +73,6 @@ const TabNavigator = createBottomTabNavigator(
         tabBarLabel: false,
         tabBarIcon: () => (
           <BottomTabIcon />
-          // <Image
-          //   source={require("../assets/icons/eat.png")}
-          //   resizeMode="contain"
-          //   style={{ width: 30, height: 30 }}
-          // />
         )
       }
     }
