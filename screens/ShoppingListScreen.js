@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import { Text } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { createShoppingList } from "../redux/actions";
+import { createShoppingList } from "../redux/mealplan/actions";
 
 class ShoppingListScreen extends Component {
   componentDidMount() {}

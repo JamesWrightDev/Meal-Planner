@@ -1,6 +1,6 @@
 import { takeLatest, put } from "redux-saga/effects";
 import { FETCH_RECIPES } from "../constants/index";
-import { fetchRecipesSuccess } from "../actions/index";
+import { fetchRecipesSuccess } from "./actions";
 
 const fetchReceipes = function*() {
   const baseUrl = "http://192.168.0.102:1337";

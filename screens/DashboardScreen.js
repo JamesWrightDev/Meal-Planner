@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import FeaturedCard from "../Components/FeaturedCard";
 import Header from "../Components/Header";
-import { fetchRecipes } from "../redux/actions";
+import { fetchRecipes } from "../redux/recipes/actions";
 
 class DashboardScreen extends Component {
   constructor(props) {
