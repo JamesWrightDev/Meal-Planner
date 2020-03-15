@@ -14,11 +14,30 @@ import {
   LoginScreen
 } from '../screens/index';
 
-const HomeStack = createStackNavigator({
-  DashboardScreen,
-  RecipeLibraryScreen,
-  RecipeInfoScreen
-})
+const defaultStackOptions = {
+  title: false,
+  headerStyle: {
+    backgroundColor: '#f4511e',
+  },
+  headerTintColor: 'white',
+};
+
+const HomeStack = createStackNavigator(
+  {
+  DashboardScreen: {
+    screen: DashboardScreen,
+    navigationOptions: defaultStackOptions,
+  },
+  RecipeLibraryScreen: {
+    screen: RecipeLibraryScreen,
+    navigationOptions: defaultStackOptions,
+  },
+  RecipeInfoScreen: {
+    screen: RecipeInfoScreen,
+    navigationOptions: defaultStackOptions,
+  }
+  }
+)
 
 const MealplanStack = createStackNavigator({
   MealPlanDashBoard: MealPlanHome,
@@ -58,7 +77,6 @@ const TabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       showIcon: true,
       showLabel: false,
-      activeTintColor: "#e91e63",
       labelStyle: {
         fontSize: 16
       },

@@ -13,7 +13,6 @@ import recipeReducer from "./redux/reducers/index";
 import mealPlanReducer from "./redux/reducers/mealPlanReducer";
 import rootSaga from "./redux/store/index";
 
-
 import AppNavigator from './routing/index';
 
 import theme from "./styles/theme";

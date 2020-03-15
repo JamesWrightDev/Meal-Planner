@@ -36,14 +36,14 @@ class RecipeLibraryScreen extends Component {
           {recipes &&
             recipes.map(item => (
               <View key={item.id}>
-                <StyledButton onPress={() => addRecipe(item)}>
-                  <ButtonIcon source={require("../assets/icons/plus.png")} />
-                </StyledButton>
                 <RecipeItem
                   activeOpacity={0.8}
                   onPress={() => viewRecipe(item.id)}
                 >
-                  <RecipeCard name={item.name} />
+                  <StyledButton onPress={() => addRecipe(item)}>
+                    <ButtonIcon source={require("../assets/icons/plus.png")} />
+                  </StyledButton>
+                  <RecipeCard name={item.name} imageUrl={item.image.url} />
                 </RecipeItem>
               </View>
             ))}
@@ -80,13 +80,18 @@ const RecipeRowTitle = styled.Text`
 `;
 
 const StyledButton = styled.TouchableOpacity`
-  position: relative;
+  position: absolute;
   top: 20px;
   left: 50%;
   align-self: flex-start;
-  border-radius: 20px;
+  border-radius: 50px;
   background-color: white;
-  padding: 20px;
+  padding: 15px;
+  top: 40px;
+  left: 65%;
+  z-index: 999;
+  opacity: 0.9;
+  border: solid 1px black;
 `;
 
 const ButtonIcon = styled.Image`
@@ -95,6 +100,8 @@ const ButtonIcon = styled.Image`
 `;
 
 const RecipeItem = styled.TouchableOpacity`
+  position: relative;
+  z-index: 1;
 `;
 
 export default connect(

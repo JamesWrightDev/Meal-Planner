@@ -5,16 +5,13 @@ import {
 import styled from "styled-components/native";
 
 export default function RecipeCard(props) {
-  const { name } = props;
+  const { name, imageUrl } = props;
 
   return (
     <RecipeCardContainer style={styles.container}>
       <RecipeImage
         style={styles.image}
-        source={{
-          uri:
-            "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg&fm=jpg"
-        }}
+        source={{uri: `http://192.168.0.102:1337${imageUrl}`}}
       />
       <RecipeHeader>{name}</RecipeHeader>
     </RecipeCardContainer>
@@ -26,6 +23,8 @@ const RecipeCardContainer = styled.View`
   height: 250px;
   margin: ${props => props.theme.spacing.dog} 0;
   padding: 0 12px;
+  position: relative;
+  z-index: -1;
 `;
 
 const RecipeImage = styled.Image`
