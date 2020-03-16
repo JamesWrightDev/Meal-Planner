@@ -12,21 +12,22 @@ const generateShoppingList = function*() {
   const recipes = yield select(getRecipes);
   const shoppingList = [];
 
-  mealPlan.recipes.forEach(mealPlanItem => {
-    const matchingRecipe = recipes.find(item => item.id === mealPlanItem.id);
-    const { ingredients } = matchingRecipe;
+  mealPlan.recipes.map(mealPlanItem => {
+    const matches = recipes.filter(item => item.id === mealPlanItem.id);
+    const { quantity } = mealPlanItem;
+    const { ingredients } = matches[0];
 
-    ingredients.forEach(item => {
-      const duplicateIngredient = shoppingList.find(
-        listItem => listItem.name === item.name.Ingredient_Name
+    ingredients.map(item => {
+      const duplicateIngredient = shoppingList.filter(
+        listItem => listItem.name === item.name["Ingredient_Name"]
       );
-      if (duplicateIngredient) {
-        duplicateIngredient.quantity += item.Quantity;
+      if (duplicateIngredient.length > 0) {
+        duplicateIngredient[0].quantity += item.Quantity;
       } else {
         const ingredient = {
           id: item.id,
-          name: item.name.Ingredient_Name,
-          quantity: item.Quantity * mealPlanItem.quantity,
+          name: item.name["Ingredient_Name"],
+          quantity: item.Quantity * quantity,
           metric: item.Metric
         };
         shoppingList.push(ingredient);

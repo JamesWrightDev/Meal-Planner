@@ -93,6 +93,7 @@ const TabNavigator = createBottomTabNavigator(
 
 const AppSwitchNavigator = createSwitchNavigator({
   LoadingScreen,
+  LoginScreen,
   DashboardScreen: TabNavigator,
   RecipeLibraryScreen
 });
