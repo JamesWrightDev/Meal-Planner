@@ -17,7 +17,7 @@ class DashboardScreen extends Component {
     return (
       <DashboardWrapper>
         <Header>Welcome</Header>
-        <FeaturedCard />
+        <FeaturedCard text="Discover Recipes"/>
       </DashboardWrapper>
     );
   }

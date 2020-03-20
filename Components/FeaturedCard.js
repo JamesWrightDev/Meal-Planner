@@ -1,65 +1,51 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Text,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native";
+import styled from "styled-components/native";
+
 import { withNavigation, StackActions } from "react-navigation";
 
-class FeaturedCard extends Component {
-  componentDidMount() {}
-
-  render() {
-    const { navigation } = this.props;
-
-    return (
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={() =>
-          navigation.dispatch(
-            StackActions.push({
-              routeName: "RecipeLibraryScreen"
-            })
-          )}
+const FeaturedCard = props => {
+  const { navigation, text } = props;
+  return (
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={() =>
+        navigation.dispatch(
+          StackActions.push({
+            routeName: "RecipeLibraryScreen"
+          })
+        )
+      }
+    >
+      <CardImage
+        source={{
+          uri:
+            "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg&fm=jpg"
+        }}
+        imageStyle={{ borderRadius: 15 }}
       >
-        <ImageBackground
-          source={{
-            uri:
-              "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg&fm=jpg"
-          }}
-          style={styles.backgroundImage}
-          imageStyle={{ borderRadius: 15 }}
-        >
-          <Text style={styles.header}>Discover Recipes</Text>
-        </ImageBackground>
-      </TouchableOpacity>
-    );
-  }
-}
+        <CardText>{text}</CardText>
+      </CardImage>
+    </TouchableOpacity>
+  );
+};
+const CardImage = styled.ImageBackground`
+  width: 100%;
+  max-height: 200px;
+  align-items: flex-start;
+  justify-content: center;
+`;
 
-const styles = StyleSheet.create({
-  image: {
-    height: 100,
-    width: 300
-  },
-  backgroundImage: {
-    width: "100%",
-    maxHeight: "50%",
-    flex: 1,
-    alignItems: "flex-start",
-    justifyContent: "center"
-  },
-  header: {
-    color: "#fff",
-    fontSize: 36,
-    fontWeight: "bold",
-    maxWidth: "80%",
-    padding: 30,
-    textShadowColor: "rgba(0, 0, 0, 0.35)",
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
-  }
-});
+const CardText = styled.Text`
+  color: white;
+  font-size: ${props => props.theme.fontSize.large};
+  max-width: 80%;
+  padding: ${props => props.theme.spacing.cat};
+`;
 
 export default withNavigation(FeaturedCard);
