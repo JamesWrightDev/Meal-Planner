@@ -28,7 +28,7 @@ const Notification = styled.Text`
   left: 80%;
   top: -10px;
   border-radius: 25px;
-  padding: 5px 10px;
+  padding: ${props => props.theme.spacing.flea} ${props => props.theme.spacing.ant};
   background-color: #02c39a;
   color: whitesmoke;
 `;

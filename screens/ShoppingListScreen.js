@@ -31,11 +31,11 @@ class ShoppingListScreen extends Component {
 }
 const ShoppingListContainer = styled.View`
   height: 100%;
-margin: 0 24px;
+  margin: 0 ${props => props.theme.spacing.cat};
 `
 
 const ShoppingListItem = styled.View`
-  padding: 12px 0;
+  padding: ${props => props.theme.spacing.mouse} 0;
   border-bottom-color: gray;
   border-bottom-width: 1px;
   flex-direction: row;

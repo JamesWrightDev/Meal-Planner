@@ -74,7 +74,7 @@ const RecipeRow = styled.ScrollView`
 
 const RecipeRowTitle = styled.Text`
   font-family: "source-sans-pro-light";
-  font-size: 32px;
+  font-size: ${props => props.theme.fontSize.large};
   padding: 12px;
   margin-top: 24px;
 `;
@@ -86,7 +86,7 @@ const StyledButton = styled.TouchableOpacity`
   align-self: flex-start;
   border-radius: 50px;
   background-color: #02C39A;
-  padding: 15px;
+  padding: ${props => props.theme.spacing.hamster};
   top: 40px;
   left: 65%;
   z-index: 999;

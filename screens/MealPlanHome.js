@@ -89,12 +89,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(MealPlanHome);
 
 const MealPlanContainer = styled.ScrollView`
   height: 100%;
-  margin: 12px;
+  margin: ${props => props.theme.spacing.cat};
 `;
 
 const MealPlanHeader = styled.Text`
   font-family: "source-sans-pro-black";
-  font-size: 32px;
+  font-size: ${props => props.theme.fontSize.large};
 `;
 
 const MealPlanItem = styled.View`
@@ -104,18 +104,18 @@ const MealPlanItem = styled.View`
   justify-content: space-between;
   height: 75px;
   width: 100%;
-  padding: 18px 0;
-  margin: 12px 0;
+  padding: ${props => props.theme.spacing.cat} 0;
+  margin: ${props => props.theme.spacing.cat} 0;
 `;
 
 const MealPlanItemName = styled.Text`
   font-family: "source-sans-pro-regular";
-  font-size: 22px;
+  font-size: ${props => props.theme.fontSize.medium};
 `;
 
 const MealPlanItemQuantity = styled.Text`
   font-family: "source-sans-pro-regular";
-  font-size: 28px;
+  font-size: ${props => props.theme.fontSize.medium};
 `;
 
 const MealPlanControls = styled.View`
@@ -126,12 +126,12 @@ const MealPlanControls = styled.View`
 `;
 
 const MealPlanButton = styled.TouchableOpacity`
-  width: 25px;
-  height: 25px;
+  width: ${props => props.theme.spacing.cat};
+  height: ${props => props.theme.spacing.cat};
   align-items: center;
   justify-content: center;
   border: solid 1px black;
-  border-radius: 25px;
+  border-radius: ${props => props.theme.spacing.cat};
 `;
 
 const ButtonIcon = styled.Image`

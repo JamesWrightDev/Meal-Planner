@@ -114,15 +114,15 @@ const RecipeImage = styled.Image`
 const RecipeTitle = styled.Text`
   font-family: "source-sans-pro-black";
   font-weight: 300;
-  font-size: 38px;
-  margin: 12px 0;
+  font-size: ${props => props.theme.fontSize.large};
+  margin: ${props => props.theme.spacing.mouse} 0;
 `;
 
 const TabControls = styled.View`
   display: flex;
   justify-content: center;
   flex-direction: row;
-  margin-top: 24px;
+  margin-top: ${props => props.theme.spacing.cat};
 `;
 
 const TabContainer = styled.View``;
@@ -136,8 +136,8 @@ const RecipeMeta = styled.View`
 
 const TextChip = styled.Text`
   border: solid 1px ${props => (props.primary ? "red" : "green")};
-  padding: 6px 18px;
-  font-size: 14px;
+  padding: ${props => props.theme.spacing.ant} ${props => props.theme.spacing.hamster};
+  font-size: ${props => props.theme.fontSize.small};
   border-radius: 50px;
   align-self: flex-start;
   color: ${props => (props.primary ? "red" : "green")};
@@ -145,10 +145,10 @@ const TextChip = styled.Text`
 
 const TabButton = styled.TouchableOpacity`
   text-align: center;
-  padding: 12px 24px;
+  padding: ${props => props.theme.spacing.mouse} ${props => props.theme.spacing.cat};
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  margin: 0 12px;
+  margin: 0 ${props => props.theme.spacing.mouse};
   background-color: ${props => (props.active ? "#02C39A" : "transparent")};
 `;
 
@@ -157,16 +157,16 @@ const TabText = styled.Text`
 `;
 const RecipeIngredient = styled.Text`
   font-family: "source-sans-pro-regular";
-  font-size: 22px;
+  font-size: ${props => props.theme.fontSize.medium};
   font-weight: 300;
-  padding: 12px 0;
+  padding: ${props => props.theme.spacing.mouse} 0;
 `;
 
 const RecipeStep = styled.Text`
   font-family: "source-sans-pro-regular";
-  font-size: 22px;
+  font-size: ${props => props.theme.fontSize.medium};
   font-weight: 300;
-  padding: 12px 0;
+  padding: ${props => props.theme.spacing.mouse} 0;
 `;
 
 const mapStateToProps = state => {
