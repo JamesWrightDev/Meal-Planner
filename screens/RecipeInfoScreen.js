@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
 import styled from "styled-components/native";
+import Tabs from "../Components/Tabs";
 
 class RecipeInfoScreen extends Component {
   constructor() {
     super();
-    this.state = {
-      activeTab: 0
-    };
+    this.state = {};
   }
 
   componentDidMount() {}
@@ -22,7 +21,6 @@ class RecipeInfoScreen extends Component {
   render() {
     const { navigation } = this.props;
     const { recipes } = this.props;
-    const { activeTab } = this.state;
 
     const recipeId = navigation.getParam("recipeId");
     const recipe = recipes.filter(item => item.id === recipeId);
@@ -70,24 +68,7 @@ class RecipeInfoScreen extends Component {
             <TextChip secondary>{`${Calories} Calories`}</TextChip>
           </RecipeMeta>
 
-          <TabControls>
-            {tabOptions.map((item, i) => (
-              <TabButton
-                active={activeTab === i}
-                key={item}
-                onPress={() => this.handleChangeTab(i)}
-              >
-                <TabText active={activeTab === i}>{item}</TabText>
-              </TabButton>
-            ))}
-          </TabControls>
-          {tabContents.map((item, i) => {
-            return (
-              i === activeTab && (
-                <TabContainer key={item}>{item()}</TabContainer>
-              )
-            );
-          })}
+          <Tabs content={tabContents} labels={tabOptions} />
         </RecipeWrapper>
       </RecipeInfoContainer>
     );
@@ -103,9 +84,9 @@ const RecipeWrapper = styled.View`
   padding: ${props => props.theme.spacing.cat};
   background-color: white;
   border-radius: 28px;
-  height : 100%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.52);
-`
+  height: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.52);
+`;
 
 const RecipeImage = styled.Image`
   height: 200px;
@@ -118,15 +99,6 @@ const RecipeTitle = styled.Text`
   margin: ${props => props.theme.spacing.mouse} 0;
 `;
 
-const TabControls = styled.View`
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  margin-top: ${props => props.theme.spacing.cat};
-`;
-
-const TabContainer = styled.View``;
-
 const RecipeMeta = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
@@ -136,25 +108,14 @@ const RecipeMeta = styled.View`
 
 const TextChip = styled.Text`
   border: solid 1px ${props => (props.primary ? "red" : "green")};
-  padding: ${props => props.theme.spacing.ant} ${props => props.theme.spacing.hamster};
+  padding: ${props => props.theme.spacing.ant}
+    ${props => props.theme.spacing.hamster};
   font-size: ${props => props.theme.fontSize.small};
   border-radius: 50px;
   align-self: flex-start;
   color: ${props => (props.primary ? "red" : "green")};
 `;
 
-const TabButton = styled.TouchableOpacity`
-  text-align: center;
-  padding: ${props => props.theme.spacing.mouse} ${props => props.theme.spacing.cat};
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  margin: 0 ${props => props.theme.spacing.mouse};
-  background-color: ${props => (props.active ? "#02C39A" : "transparent")};
-`;
-
-const TabText = styled.Text`
-  color: ${props => (props.active ? "white" : "#02C39A")};
-`;
 const RecipeIngredient = styled.Text`
   font-family: "source-sans-pro-regular";
   font-size: ${props => props.theme.fontSize.medium};
