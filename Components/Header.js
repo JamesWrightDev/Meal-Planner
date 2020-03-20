@@ -1,22 +1,9 @@
-import React from 'react';
-import {
-  Text, StyleSheet,
-} from 'react-native';
+import styled from "styled-components/native";
 
-const Header = (props) => {
-  const { text } = props;
-  return (
-    <Text style={styles.header}>{text}</Text>
-  );
-};
-
-const styles = StyleSheet.create({
-  header: {
-    fontSize: 38,
-    fontWeight: 'bold',
-    marginBottom: 50,
-    color: '#000'
-  },
-});
-
+const Header = styled.Text`
+  font-size: 38px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 50px;
+`
 export default Header;
