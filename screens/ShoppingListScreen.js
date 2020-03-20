@@ -16,7 +16,6 @@ class ShoppingListScreen extends Component {
         <Text>ShoppingList</Text>
         {
           shoppingList.map(item => {
-            console.log(item);
             return(
               <ShoppingListItem key={item.id}>
                 <Text>{item.name}</Text>
