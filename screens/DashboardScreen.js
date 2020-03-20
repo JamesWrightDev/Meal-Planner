@@ -7,17 +7,9 @@ import Header from "../Components/Header";
 import { fetchRecipes } from "../redux/recipes/actions";
 
 class DashboardScreen extends Component {
-  constructor(props) {
-    super();
-
-    const { recipes, fetchRecipes } = props;
-  }
-
   componentDidMount() {
     if (!this.recipes) {
       this.props.fetchRecipes();
-    } else {
-      console.log(true);
     }
   }
 
